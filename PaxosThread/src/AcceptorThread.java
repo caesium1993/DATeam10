@@ -5,8 +5,8 @@ public class AcceptorThread extends Thread {
 	public boolean flag=false;
 	public String name="";//Identify each Acceptor
 	public Learner learner;
-	private long Time1= 1000l;
-	private long Time=500l;
+	private long Time1= 1000l;//Acceptor receive N or new value and sleep for a while to reply to proposer
+	private long Time=500l;//Each 0.5s check about whether new value is accepted; if yes, then it to Learner
 	
 	public synchronized String  SetN (int NumberfromProposer) //Get new N value from proposer
 	{

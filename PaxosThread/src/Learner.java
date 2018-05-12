@@ -8,7 +8,7 @@ public class Learner extends Thread{
 	private boolean flagb=false;
 	private boolean flagc=false;
 	private ProposerThread p1,p2,p3;
-	private long Time1=500l;
+	private long Time1=500l;//Each 0.5s check if new value is sent to me; if yes, send it to proposer
 	
 	
 	public void setValuea(int Valuea) {
