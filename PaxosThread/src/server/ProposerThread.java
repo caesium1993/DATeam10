@@ -1,14 +1,9 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+package server;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class ProposerThread extends Thread {
 	public int NumbertoPropos =0;
@@ -37,13 +32,13 @@ public class ProposerThread extends Thread {
 		
 	}
 	
-	public void GetValue(int result) //Get final result from Learner
+	public void GetValue(int result) //Get final result from server.Learner
 	{
 		this.Result=result;
 		try {
 			this.outputstream.writeUTF(String.valueOf(this.Result));
-			 System.out.println("Learner Sends message "+this.Result +" back to client. \n");
-			this.outputstream.flush();//Write final result to Client
+			 System.out.println("server.Learner Sends message "+this.Result +" back to client. \n");
+			this.outputstream.flush();//Write final result to client.client
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,10 +72,10 @@ public class ProposerThread extends Thread {
 					if(this.inputcount<5)//Control the number of rounds of game to five
 					{
 				    this.ClientInput=Integer.valueOf(line);
-				    this.ValuetoPropos=this.ClientInput;//Get the new value from Client
+				    this.ValuetoPropos=this.ClientInput;//Get the new value from client.client
 				    this.inputcount++;
 			        this.Propos();//Propose new value
-					System.out.println("I'm Waitting for Client's new Income...");
+					System.out.println("I'm Waitting for client.client's new Income...");
 					}
 				}
 			} catch (IOException e1) {

@@ -1,3 +1,5 @@
+package client;
+
 import java.io.DataInputStream;
 
 import java.io.DataOutputStream;
@@ -6,7 +8,6 @@ import java.io.IOException;
 
 import java.net.Socket;
 
-import java.util.Scanner;
 public class Client {
 
 	private static boolean flag = false;
@@ -45,7 +46,7 @@ public class Client {
             	if(input.available() > 0)
             	{
             	String message_rec = input.readUTF();
-            	System.out.printf("Client Receive: %s. \n", message_rec);
+            	System.out.printf("client.client Receive: %s. \n", message_rec);
             	}
             }
 

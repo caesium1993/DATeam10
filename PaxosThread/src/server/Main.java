@@ -1,3 +1,5 @@
+package server;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,7 +31,7 @@ public class Main {
 		b1=new AcceptorThread("b1");//Initial second Acceptor
 		c1=new AcceptorThread("c1");//Initial third Acceptor
 
-		a1.learner=learner;//Initial Learner
+		a1.learner=learner;//Initial server.Learner
 		b1.learner=learner;
 		c1.learner=learner;
 
@@ -37,7 +39,7 @@ public class Main {
 		scheduledThreadPool.schedule(a1, 0,TimeUnit.SECONDS);//Thread of first Acceptor
 		scheduledThreadPool.schedule(b1, 0,TimeUnit.SECONDS);//Thread of second Acceptor
 		scheduledThreadPool.schedule(c1, 0,TimeUnit.SECONDS);//Thread of third Acceptor
-		scheduledThreadPool.schedule(learner,0,TimeUnit.SECONDS);//Thread of Learner
+		scheduledThreadPool.schedule(learner,0,TimeUnit.SECONDS);//Thread of server.Learner
 		while(count<3)//Wait for three Clients' connection
 		{
 			try {
