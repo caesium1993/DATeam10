@@ -7,7 +7,8 @@ public class ScannerThread implements Runnable {
     private int count = 0;
     @Override
     public void run() {
-        System.out.println("Enter the input");
+        System.out.println("Please wait to start...");
+        //System.out.println("Enter the input");
         while(count<limit){
             int input = scanner.nextInt();
             Client.setValue(input);

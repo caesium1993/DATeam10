@@ -24,6 +24,7 @@ public class ProposerThread extends Thread {
 	private DataInputStream inputstream;
 	private DataOutputStream outputstream;
 	private int inputcount=0;
+	public static boolean terminated = false;  //if a client is leave
 	
 	
 	public ProposerThread (AcceptorThread a,AcceptorThread b,AcceptorThread c, Socket client) throws IOException {
@@ -50,8 +51,23 @@ public class ProposerThread extends Thread {
 	}
 	@Override
 	public void run() {
+		try {
+			this.outputstream.writeUTF("Game Start Now!");
+			this.outputstream.flush();//notify client that game start now
+		} catch (IOException e) {
+		}
+
 		//System.out.println("running");
 		while(true) {
+			if(terminated==true){
+				try {
+					this.outputstream.writeUTF("Sorry, one client leaves, game over");
+					this.outputstream.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
 			//System.out.println("cannot stop");
 			try {
 				String line;
@@ -64,13 +80,14 @@ public class ProposerThread extends Thread {
 				    this.ValuetoPropos=this.ClientInput;//Get the new value from Client
 				    this.inputcount++;
 			        this.Propos();//Propose new value
-			System.out.println("I'm Waitting for Client's new Income...");
-			}
-			}
+					System.out.println("I'm Waitting for Client's new Income...");
+					}
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
-				System.out.println("exception");
-				e1.printStackTrace();
+				System.out.println("Sorry, one client leaves, game over");
+				terminated = true;
+				return;
 			}
 		}
 	}
@@ -105,12 +122,12 @@ public class ProposerThread extends Thread {
 				}
 				if(VResa[0].equals("A")&&VResb[0].equals("A")&&VResc[0].equals("A"))//Value is accepted by all three Acceptors
 				{
-					System.out.println("Break from inner while true");
+					//System.out.println("Break from inner while true");
 					break;//Only break when value is accepted successfully
 				}
 				else //Value is not accepted, because the N value of value is smaller than the current accepted N value
 				{
-					System.out.println("Value  denied N is too small, change N to "+this.a.CurrentAcceptedNumber);
+					System.out.println("Value denied N is too small, change N to "+this.a.CurrentAcceptedNumber);
 					this.NumbertoPropos=this.a.CurrentAcceptedNumber;//Update N value to the current accepted N value and try again
 					System.out.println("Value is not accepted.");
 					try {

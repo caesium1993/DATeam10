@@ -65,6 +65,9 @@ public class AcceptorThread extends Thread {
 	@Override
 	public void run() {
 		while(true) {
+			if(ProposerThread.terminated==true){
+				break;
+			}
 			while(true) {
 				try {
 					Thread.sleep(Time);
@@ -93,7 +96,7 @@ public class AcceptorThread extends Thread {
 				}
 					// TODO Auto-generated catch block
 			}
-			System.out.println("I'm Listening...");
+			System.out.println("Accepter: I'm Listening...");
 		}
 	}
 }

@@ -55,13 +55,14 @@ public class Main {
 				count++;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		learner.setp1(p11,p21,p31);
 		scheduledThreadPool.schedule(p11, 0,TimeUnit.SECONDS);//Thread of first proposer
 		scheduledThreadPool.schedule(p21, 0,TimeUnit.SECONDS);//Thread of second proposer
 		scheduledThreadPool.schedule(p31, 0,TimeUnit.SECONDS);//Thread of third proposer
+
 	}
 
 }

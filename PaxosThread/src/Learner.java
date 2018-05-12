@@ -32,6 +32,9 @@ public class Learner extends Thread{
 	public void run() {
 		
 		while (true) {
+			if(ProposerThread.terminated==true){
+				break;
+			}
 			while(true) {
 				try {
 					Thread.sleep(Time1);
