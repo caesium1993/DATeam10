@@ -1,5 +1,3 @@
-package server;
-
 public class AcceptorThread extends Thread {
 	public int CurrentAcceptedNumber = 0;
 	public int CurrentAcceptedValue =0;
@@ -76,20 +74,20 @@ public class AcceptorThread extends Thread {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(this.flag==true) //If new value is accepted, Send the new value to server.Learner
+				if(this.flag==true) //If new value is accepted, Send the new value to Learner
 				{
-					System.out.println("Send to server.Learner "+this.CurrentAcceptedValue);
+					System.out.println("Send to Learner "+this.CurrentAcceptedValue);
 					if(this.name.equals("a1")) {
 						System.out.println(this.name);
-						this.learner.setValuea(this.CurrentAcceptedValue);//First acceptor send value to server.Learner
+						this.learner.setValuea(this.CurrentAcceptedValue);//First acceptor send value to Learner
 					}
 					if(this.name.equals("b1")) {
 						System.out.println(this.name);
-						this.learner.setValueb(this.CurrentAcceptedValue);//Second acceptor send value to server.Learner
+						this.learner.setValueb(this.CurrentAcceptedValue);//Second acceptor send value to Learner
 					}
 					if(this.name.equals("c1")) {
 						System.out.println(this.name);
-						this.learner.setValuec(this.CurrentAcceptedValue);//Third acceptor send value to server.Learner
+						this.learner.setValuec(this.CurrentAcceptedValue);//Third acceptor send value to Learner
 					}
 					this.flag=false;
 

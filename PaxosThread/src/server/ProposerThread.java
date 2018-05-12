@@ -1,5 +1,3 @@
-package server;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,7 +20,7 @@ public class ProposerThread extends Thread {
 	public static boolean terminated = false;  //if a client is leave
 	
 	
-	public ProposerThread (AcceptorThread a,AcceptorThread b,AcceptorThread c, Socket client) throws IOException {
+	public ProposerThread (AcceptorThread a, AcceptorThread b, AcceptorThread c, Socket client) throws IOException {
 		this.a=a; 
 		this.b=b;
 		this.c=c;
@@ -32,12 +30,12 @@ public class ProposerThread extends Thread {
 		
 	}
 	
-	public void GetValue(int result) //Get final result from server.Learner
+	public void GetValue(int result) //Get final result from Learner
 	{
 		this.Result=result;
 		try {
 			this.outputstream.writeUTF(String.valueOf(this.Result));
-			 System.out.println("server.Learner Sends message "+this.Result +" back to client. \n");
+			 System.out.println("Learner Sends message "+this.Result +" back to client. \n");
 			this.outputstream.flush();//Write final result to client.client
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

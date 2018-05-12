@@ -1,5 +1,3 @@
-package server;
-
 public class Learner extends Thread{
 	private int Result=0;
 	private int Valuea=0;
@@ -13,15 +11,15 @@ public class Learner extends Thread{
 	
 	
 	public void setValuea(int Valuea) {
-		flaga=true;//Mark that the first Acceptor sends value to server.Learner
+		flaga=true;//Mark that the first Acceptor sends value to Learner
 		this.Valuea=Valuea;
 	}
 	public void setValueb(int Valueb) {
-		flagb=true;//Mark that the second Acceptor sends value to server.Learner
+		flagb=true;//Mark that the second Acceptor sends value to Learner
 		this.Valueb=Valueb;
 	}
 	public void setValuec(int Valuec) {
-		flagc=true;//Mark that the third Acceptor sends value to server.Learner
+		flagc=true;//Mark that the third Acceptor sends value to Learner
 		this.Valuec=Valuec;
 	}
 	
@@ -43,18 +41,18 @@ public class Learner extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if (flaga == true && flagb == true && flagc == true) // Three Acceptors all send value to server.Learner
+				if (flaga == true && flagb == true && flagc == true) // Three Acceptors all send value to Learner
 				{
 					flaga = false;
 					flagb = false;
 					flagc = false;
-					if (this.Valuea == this.Valueb && this.Valueb == this.Valuec) // Three Acceptors all send the same value to server.Learner
+					if (this.Valuea == this.Valueb && this.Valueb == this.Valuec) // Three Acceptors all send the same value to Learner
 					{
-						this.Result = this.Result + this.Valuea;//server.Learner update final result based on new value
+						this.Result = this.Result + this.Valuea;//Learner update final result based on new value
 						p1.GetValue(this.Result);//Sends final result to first proposer
 						p2.GetValue(this.Result);//Sends final result to second proposer
 						p3.GetValue(this.Result);//Sends final result to third proposer
-						System.out.println("server.Learner will send " + this.Result + " as result.");
+						System.out.println("Learner will send " + this.Result + " as result.");
 						break;
 					}
 
