@@ -1,3 +1,7 @@
+package client;
+
+import client.Client;
+
 import java.util.Scanner;
 
 public class ScannerThread implements Runnable {

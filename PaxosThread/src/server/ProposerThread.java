@@ -1,7 +1,12 @@
+package server;
+
+import server.AcceptorThread;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Random;
 
 public class ProposerThread extends Thread {
 	public int NumbertoPropos =0;
@@ -18,6 +23,7 @@ public class ProposerThread extends Thread {
 	private DataOutputStream outputstream;
 	private int inputcount=0;
 	public static boolean terminated = false;  //if a client is leave
+	private int countD = 0;
 	
 	
 	public ProposerThread (AcceptorThread a, AcceptorThread b, AcceptorThread c, Socket client) throws IOException {
@@ -30,16 +36,16 @@ public class ProposerThread extends Thread {
 		
 	}
 	
-	public void GetValue(int result) //Get final result from Learner
+	public void GetValue(int result) //Get final result from server.Learner
 	{
 		this.Result=result;
 		try {
 			this.outputstream.writeUTF(String.valueOf(this.Result));
-			 System.out.println("Learner Sends message "+this.Result +" back to client. \n");
+			 System.out.println("server.Learner Sends message "+this.Result +" back to client. \n");
 			this.outputstream.flush();//Write final result to client.client
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	@Override
@@ -88,6 +94,11 @@ public class ProposerThread extends Thread {
 	public void Propos() {
 		while(true)
 			{
+				if(countD>5){
+					Random random = new Random();
+					int timeR = random.nextInt(50);
+					this.Time2 = timeR;
+				}
 				this.NumbertoPropos++;//Add current N value by one to propose
 				System.out.println("Number to propos: "+this.NumbertoPropos);
 				System.out.println("this.a.CurrentAcceptedNumber: "+this.a.CurrentAcceptedNumber);//The current accepted N value
@@ -115,12 +126,13 @@ public class ProposerThread extends Thread {
 				}
 				if(VResa[0].equals("A")&&VResb[0].equals("A")&&VResc[0].equals("A"))//Value is accepted by all three Acceptors
 				{
-					//System.out.println("Break from inner while true");
+					countD=0;//System.out.println("Break from inner while true");
 					break;//Only break when value is accepted successfully
 				}
 				else //Value is not accepted, because the N value of value is smaller than the current accepted N value
 				{
 					System.out.println("Value denied N is too small, change N to "+this.a.CurrentAcceptedNumber);
+					countD++;
 					this.NumbertoPropos=this.a.CurrentAcceptedNumber;//Update N value to the current accepted N value and try again
 					System.out.println("Value is not accepted.");
 					try {
@@ -135,6 +147,7 @@ public class ProposerThread extends Thread {
 				else//N is not accepted 
 				{
 					System.out.println("N denied N is too small, change N to "+this.a.CurrentAcceptedNumber);
+					countD++;
 					this.NumbertoPropos=this.a.CurrentAcceptedNumber;//Update N value to the current accepted N value and try again
 					try {
 						Thread.sleep(Time3);
