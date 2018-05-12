@@ -17,8 +17,8 @@ public class ProposerThread extends Thread {
 	public AcceptorThread a;
 	public AcceptorThread b;
 	public AcceptorThread c;
-	private long Time2= 50l;//Proposer's N is accepted then sleep time2
-	private long Time3= 1000l;//Proposer's N or Value is denied then sleep time3
+	private long Time2= 5l;//Proposer's N is accepted then sleep time2
+	private long Time3= 100l;//Proposer's N or Value is denied then sleep time3
 	private int ClientInput =0;
 	private Socket client;
 	private DataInputStream inputstream;
