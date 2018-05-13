@@ -1,5 +1,8 @@
 package server;
 
+/**
+ * This class simulates the Learner in Paxos
+ */
 public class Learner extends Thread{
 	private int Result=0;
 	private int Valuea=0;

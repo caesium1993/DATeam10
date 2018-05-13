@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Random;
 
+/**
+ * This class simulates the Proposer in Paxos. Each time it gets a new input value from a Client, it begins to propose
+ * to Acceptors.
+ */
+
 public class ProposerThread extends Thread {
 	public int NumbertoPropos =0;
 	public int ValuetoPropos = 1;

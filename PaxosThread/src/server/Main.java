@@ -10,6 +10,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This project implements the processes of basic Paxos using multi-threads. We have three Acceptors and one
+ * Learner on Server, and allocate a Proposer for every connected Client. Server begins the game until three Clients
+ * connect. Each Client have five rounds for the game. No more input will be processed after the fifth round.
+ * If any Client leaves during the game, Server terminates the game and notifies the other Clients.
+ */
+
 public class Main {
 
 	public static ProposerThread p11=null;

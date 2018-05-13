@@ -1,5 +1,8 @@
 package server;
 
+/**
+ * This class simulates the Acceptor in Paxos
+ */
 public class AcceptorThread extends Thread {
 	public int CurrentAcceptedNumber = 0;
 	public int CurrentAcceptedValue =0;

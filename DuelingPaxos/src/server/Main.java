@@ -7,6 +7,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This project simulates the dueling problem in basic Paxos. We assume that there are only two Clients propose value.
+ * Both of them get a request from a Client and plan to propose value 1 to Acceptors. In dueling problem,
+ * N will keep increasing but no value be accepted. To simulate the process, all time have been fixed.
+ */
+
 public class Main {
 
 	public static ProposerThread p11=null;
